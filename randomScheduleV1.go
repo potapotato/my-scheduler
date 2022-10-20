@@ -39,6 +39,7 @@ func main() {
 	}
 
 	// 等待 ADDED 事件
+	fmt.Println("start watching ...")
 	for event := range watch.ResultChan() {
 		if event.Type != "ADDED" {
 			continue
@@ -48,6 +49,7 @@ func main() {
 
 		// 调度
 		scheduledNode, err := ChooseFitNode(clientset)
+		fmt.Printf("schedule the pod to %s\n", scheduledNode.Name)
 		if err != nil {
 			panic(err.Error())
 		}
